@@ -6,7 +6,7 @@ These three principals deal with the relationship between components.
 
 > Allow no cycles in the compoent dependency graph
 
-####The Problem
+#### The Problem
 When many developers are modifying the same source files and keep stepping on each others code. Changes from different developers keep colliding and breaking each others code.
 
 #### Solution 1
@@ -85,7 +85,7 @@ Example: Lots of things depend on the `TCP` protocol, therefore `TCP` has many r
 
 Another example: People really like stable API's, right?
 
-**Unable Component**
+**Unstable Component**
 
 When a component (Y) depends on other components (A, B, C), it is considered unstable. Component Y has three potential reasons to change. Note that nothing depends on component Y. 
 
@@ -141,7 +141,7 @@ i=1        |     |     i=1
          |   Stable   |
          |            |
          +---------+--+
-          i=0      |
+          i=1/3    |
                    |
                    |
                  +-v----------+
@@ -149,6 +149,7 @@ i=1        |     |     i=1
                  |  Flexible  |
                  |            |
                  +------------+
+                 i=1 (for reasons...)
 ```
 
 If you do end up in this situation though, the common solution is Dependency Inversion. This will create an interface with an `i=0`.
@@ -180,4 +181,40 @@ i=1        |     |     i=1
 
 ## Stable Abstractions Principle
 
-TODO
+> A component should be as abstract as it is stable
+
+There's the idea that some software in a system should not change very often (database?). This software usually represent **high-level architecture** or **policy decisions**. Therefore this type of software should be placed in a stable component (_i = 0_).
+
+Given these facts we now face a **problem**. How can a component that is maximally stable (_i = 0_) be flexible enough to withstand change?
+
+The answer to this problem is the **Open-Closed Principle (OCP)** (open to extension, closed to modification). What kind of classes satisfy the OCP? **Abstract classes**.
+
+What's the **Stable Abstraction Principle (SAP)** about then??
+
+The SAP is about the relationship between the stability and abstractness of a component.
+
+Therefore, stable components should be should be abstract, so it's not prevented from being extended. Stable components should consist of interfaces and abstract classes.
+
+The SAP and SDP combined are the DIP of components. DIP is for classes.
+
+What's the difference between components and classes? Components are a group of related classes working together to serve some function.
+
+Why don't we just say the DIP is for classes and components? We don't say DIP is for components because components will always be a mix of different kinds of classes, they fall in a gray area. Classes are never gray; they're always abstract or not.
+
+**Measuring Abstractness**
+
+```
+A is between 0 and 1
+c = # of classes in a component
+a = # of abstract classes and interfaces in a component
+A = a / c
+```
+
+- Draws a graph with **Abstractness as the Y-axis** and **Instability as the X-axis**
+- This graph can help us think about the relationship between abstractness and instability of components
+- To start, there are two areas on the graph that we should ensure our components don't fall into
+  - **Zone of uselessness** (1,1): components in this area are full of abstract classes/interfaces that aren't used at all (have no dependents)
+  - **Zone of pain** (0,0): these components are concrete and stable, which means they're rigid and hard to change.
+    - Example: database schemas! They're highly depended on but score low on Abstractness and Instability, making them very hard to change. Think about a tough database migration you had to do.
+- Overall you want components near the **Main Sequence** (the slope between (1,0) and (0,1))
+- From this point you can do more analysis on the data, like plot the mean and variance and even track how components drift on this graph over time
