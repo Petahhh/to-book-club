@@ -103,7 +103,7 @@ Services that an object cannot function without. e.g. a graphics package needs a
 
 Some peers want to be kept up to date with an objects activity. For the object, this is usually a "fire and forget" sort of deal. The object doesn't care or know which peers are listening. Common in user interface systems. e.g. when a button is clicked it sends off a notification to any listeners that are subscribed to it. This decouples both objects from each other in a very clean way.
 
-### Adjustments
+#### Adjustments
 
 Peers that adjust an objects behaviour to meet the wider needs of the system. e.g. In Concourse, there's an accessor object that can change the behaviour of the system based on what role a user has. Each API endpoint doesn't need to verify if a user has a specific role, the accessor is able to adjust the system to ensure each API endpoint is properly protected.
 
