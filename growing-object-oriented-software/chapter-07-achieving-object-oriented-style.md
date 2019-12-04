@@ -36,8 +36,9 @@ There are three basic techniques values types: `Breaking out`, `Budding off` and
 Value Objects in Domain Driven Design by Dan Bergh Johnsson: https://vimeo.com/13549100
 
 Summary: 
-    * We have lots of computational complexity in our systems that can be moved to value objects (especially compound value objects)
-    * This can reduce concurrency issues, make things easier to test, and make our code easier to reason about
+
+* We have lots of computational complexity in our systems that can be moved to value objects (especially compound value objects)
+* This can reduce concurrency issues, make things easier to test, and make our code easier to reason about
 
 ## Breaking out, Budding off and Bundling up
 
@@ -57,7 +58,7 @@ When the code is more stable and has some degree of structure, we often discover
 
 When writing a test, we ask ourselves, “If this worked, who would know?” If the right answer to that question is not in the target object, it’s probably time to introduce a new collaborator.
 
-> Some people have a really hard time drawing a line between when budding off is useful and when it just adds pointless code. I think this sort of practice takes place naturally if you follow the Jeff Bay Object Calisthenics rules.
+> Some people have a really hard time drawing a line between when budding off is useful and when it just adds pointless code. I think this sort of practice takes place naturally if you follow the Jeff Bay [Object Calisthenics](https://williamdurand.fr/2013/06/03/object-calisthenics/) rules.
 
 ### Bundling Up: Hiding Related Objects into a Containing Object
 
