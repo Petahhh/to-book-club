@@ -31,9 +31,11 @@ Objects have state, so they have identity and relationships with each other.
 
 There are three basic techniques values types: `Breaking out`, `Budding off` and `Bundling up`.
 
-### Interesting talk 
+### Learn more about Value Objects
 
-Value Objects in Domain Driven Design by Dan Bergh Johnsson: https://vimeo.com/13549100
+[Value Object wiki entry](http://wiki.c2.com/?ValueObject)
+
+[Value Objects in Domain Driven Design](https://vimeo.com/13549100) by Dan Bergh Johnsson
 
 Summary: 
 
