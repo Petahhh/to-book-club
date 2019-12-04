@@ -87,6 +87,11 @@ The declarative layer describes what the code will do, while the implementation 
 
 ## Building Up to Higher-Level Programming
 
+GOOS describes a manner of thinking about code in two layers to make things easier to reason about:
+
+* an 'implementation' layer which is a graph of objects, and whose behavior is the combined result of how its objects respond to events, and
+* a 'declarative' layer that builds up the objects in the implementation layer
+
 For the implementation layer we stick to the conventional object oriented style guidelines.
 
 For the declarative layer we might even use “train wreck” chaining of method calls or static methods to help get the point across.
