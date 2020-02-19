@@ -11,7 +11,7 @@ easier to understand and cheaper to modify _without changing its existing
 behaviour_.
 
 IDEs often have the ability to automatically perform certain refactorings -
-however many of them do not guarantee that they preserve behaviour. Often they
+however, many of them do not guarantee that they preserve behaviour. Often they
 simply make context-insensitive changes at the syntax level, which can introduce
 bugs. To the extent possible, it is worth introducing tests even before
 performing automated refactorings.
@@ -65,10 +65,10 @@ Not all testing tools are FLOSS, but... the good ones are?
 
 xUnit - key features that we mostly take for granted:
 * Programmers write tests in the language they are developing in.
-* All tests run in isolation
+* All tests run in isolation.
 * Tests can be grouped into suites so that they can be run and rerun on demand.
 
-xUnit platforms:
+some xUnit platforms:
 * Java - JUnit
 * C++ - CppUnitLite (created by the author)
 * .NET (C#, VB.NET, etc) - NUnit

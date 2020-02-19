@@ -4,11 +4,11 @@ Unless code was written with tests, it is often difficult to add them. We almost
 always need to slightly change a program's behaviour in order to add helpful
 tests to it.
 
-If we model programs as documents, we tend to think that modifying their
+If we model programs as _documents_, we tend to think that modifying their
 source code is the only way to change their behaviour - but we have already
 established that editing untested code is risky.
 
-The seam model is about having a more fluent understanding of the ways a
+Thinking in terms of _seams_ offers a more fluent understanding of the ways a
 program's behaviour is determined, in order to add tests without undue risk.
 
 ## Seams
@@ -34,18 +34,19 @@ shared global state - i.e. we can more effectively isolate the code we wish to
 test.
 
 Seam: method call
+
 Enabling point: testing subclass' implementation
 
-**note**: not call method calls are seams - if the code both instantiates an
+**Note:** not call method calls are seams - if the code both instantiates an
 object and calls a method on the new instance, you cannot change the way
-the method is dispatched. This is one of the reasons dependency injection is a
+the method is dispatched. This is one of the reasons _dependency injection_ is a
 common feature of well-tested OO code.
 
 ### Preprocessing Seams
 
 In compiled languages with preprocessor macros, you can use tricks like 
 
-```
+```C++
 #ifdef TESTING
 #define function_with_side_effects()
 	//mock implementation
@@ -53,6 +54,7 @@ In compiled languages with preprocessor macros, you can use tricks like
 ```
 
 Seam: call to `function_with_side_effects`
+
 Enabling point: header file where the `#define` macro is used to replace it.
 
 ### Link Seams
@@ -62,8 +64,9 @@ pre-compiled programs - you can often change the behaviour of a program by
 substituting a different library with an identical API.
 
 Seam: use of a variable, type or function from a library
+
 Enabling point: _outside_ the program text itself - the classpath or
-build/deployment script.**note** this means these seams can be difficult to
+build/deployment script. **Note:** this means these seams can be difficult to
 notice.
 
 ### C++ Example
