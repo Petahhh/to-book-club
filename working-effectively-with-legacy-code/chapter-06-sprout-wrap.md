@@ -1,3 +1,16 @@
+```
++-------------------------+        +----+
+| Source Method           |        |
+|                         |        |
+|                         |        |
+|  +--------------------+ | <------+   Sprout Method/Class
+|                         |        |
+|                         |        |
+|                         |        |
++-------------------------+        +----+
+
+```
+
 # I Don't Have Much Time and I Have to Change It
 
 * Is it worth spending 2 hours backfilling tests for 15 minutes of "real work"? (Real work being the specific change you need to make.) Yes because:
@@ -43,6 +56,48 @@
 |When unable to get old code under test, you see a clean interface between new and old code|Source class/method can be left in an odd state|
 |You can see all variables affected in your change which helps determine if the code is correct||
 
+### When not to use sprout method
+
+When the following is true:
+* You need to make changes to a class
+* Creating objects of that class within a test harness is hard
+  * hard = the balance between how much time you're able to spend vs how much effort it is
+* Creating an instance of the class has a long chain of dependencies
+
+```
+B = new B("hello", "world")
+C = new C(B, 1, 2, 3)
+.
+.
+.
+X = new X(B, C, W, T, F)
+```
+
 ## Sprout Class
 
+* When dependencies are really tangled, the sprout class may be better than a sprout method
+  * Example of when sprout method
+* Sprout classes can be used in lieu of the sprout method. Sprout classes hold your changes and is used from the source class.
+* It may be unintuitive to create small classes for something that feels insignificant however when you do it enough better patterns may emerge like an interface. Ideally your untested large class evolves (along with it's testing suite) to look more like the interface or several small classes you add.
+* Sprouting small classes isn't a just a quick fix, it's part of many iterations that slowly improve the design of your code
+  * Sprout classes may lead you to better understand the responsibilities of the class and thus help you justify the new class and it's new responsibility
+Peter: new directory with one file in it problem
+  * sometimes my gut tells me to pull something out into it's own class
+  * the new class doesn't really fit with anything else
+  * I end up putting it into it's own directory all by it's lonesome self - feels icky
 
+### Sprout Class Step by Step
+
+1. Find **where** you need to make a change (source method)
+1. If the change you need to make can be made by adding a set of sequential lines, thank of a **good class name**. Comment in the instantiation of a sprout class and a method call to use it
+1. **Inputs**: What local varialbles do you need from the source method? Add them as arguments to sprout class' constructor method
+1. **Outputs**: What does the class need to return to the source method? If any, create a method in the sprout class to return it. Update your commented code in the source method to call the method and receive the output.
+1. Test drive the sprout class' method
+1. Comment in the code you added to the source method.
+
+|Pros|Cons|
+|---|---|
+|Gives you confidence in making changes that may be invasive|Adding complexity to the code base|
+|Minimal changes to existing code which minimizes risk|You may be adding responsibility to the sprout class that may truly belong in the source method/class|
+|Creating a precendence/pattern that make similar future changes easier||
+|You're not making a bad situation worse||
