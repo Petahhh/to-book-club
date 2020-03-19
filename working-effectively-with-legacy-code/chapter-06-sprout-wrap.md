@@ -153,3 +153,67 @@ In lie of this icky code you can create a wrap method. It looks like this:
 1. Have the wrap method call the original method
 1. Add a new method for your new functionality
 1. Have the wrap method also call your new method
+
+This a technique is also called the **decorator pattern**
+
+### Decorator Pattern
+
+We know that change is inevitable. In situations where you have a set of behaviours that might be tweaked and changed in the future you can use the decorate pattern to make it easier to adapt to changes in the future.
+
+Consider a smart remote that controls the lights, blinds and TVs in your home:
+
+```
+interface SmartRemote {
+  TurnOff(string device)
+  TurnOn(string device)
+}
+```
+
+You can easily implement this object but what would it look like to create a decorator version of it? Start with an abstract class
+
+```
+abstract class SmartRemoteDecorator implements SmartRemote
+```
+
+Give it a constructor with an instance of SmartRemote as an parameter
+
+```
+abstract class SmartRemoteDecorator implements SmartRemote {
+  SmartRemoteDecorator(SmartRemote init)
+}
+```
+
+"Cheat" by reusing the instance of SmartRemote for all the methods of the interface
+
+
+```
+abstract class SmartRemoteDecorator implements SmartRemote {
+  SmartRemoteDecorator(SmartRemote init)
+  
+  this.TurnOn() {
+    init.TurnOn()
+  }
+  
+  this.TurnOff() {
+    init.TurnOff()
+  }
+}
+```
+
+The above is an example of the decorator pattern that wraps an existing class. Anyone who uses it doens't need to know it's a wrapper. The convenient thing about this is you've setup the infrastructure to extend the behaviour of TurnOn without touching the implementation of SmartRemote. For example you could add logging to datadog so people can creep you.
+
+
+```
+abstract class SmartRemoteDecorator implements SmartRemote {
+  SmartRemoteDecorator(SmartRemote init)
+  
+  this.TurnOn() {
+    init.TurnOn()
+    dataDogApi.Log("Peter is probably home")
+  }
+  
+  this.TurnOff() {
+    init.TurnOff()
+  }
+}
+```
