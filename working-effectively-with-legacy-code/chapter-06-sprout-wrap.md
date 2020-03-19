@@ -101,3 +101,55 @@ Peter: new directory with one file in it problem
 |Minimal changes to existing code which minimizes risk|You may be adding responsibility to the sprout class that may truly belong in the source method/class|
 |Creating a precendence/pattern that make similar future changes easier||
 |You're not making a bad situation worse||
+
+## Wrap Method
+
+**Temporal Coupling**:
+
+* When you add functionality to a piece of code because the new functionality needs to happen at the same time as the code. It's convenient and it'll get the job done. The risk is that this is easily abused.
+* This becomes problematic when:
+  * You may eventually need these two things to happened separately
+  * These two things have grown together with no clear seam and becomes hard to separate
+  
+```
+ Flow diagram:
+
++---+     +----------+      +-----------+
+|   |     |          |      |           |
+|   +---->+ Event A  +----->+  Event B  |
+|   |     |          |      |           |
++---+     +----------+      +-----------+
+          |          |
+          | New Event|
+          |    A.1!  |
+          +----------+
+``` 
+
+In lie of this icky code you can create a wrap method. It looks like this:
+
+```
+ Flow diagram:
+
++---+     +-------------------------+      +-----------+
+|   |     | Wrap Method             |      |           |
+|   +---->+   +                     +----->+  Event B  |
+|   |     |   |                     |      |           |
++---+     |   |     +----------+    |      +-----------+
+          |   |     |          |    |
+          |   +---->+ Event A  |    |
+          |   |     |          |    |
+          |   |     +----------+    |
+          |   |                     |
+          |   |     +----------+    |
+          |   |     |   New    |    |
+          |   +----->Unrelated |    |
+          |         |   EVent  |    |
+          |         +----------+    |
+          +-------------------------+
+
+```
+
+1. Create a wrap method that has the same signature of the method you're tempted to do temporal coupling to
+1. Have the wrap method call the original method
+1. Add a new method for your new functionality
+1. Have the wrap method also call your new method
