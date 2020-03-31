@@ -204,3 +204,14 @@ Pro tip: use `kubectl run` to create objects without scaffolding out yaml files 
 `kubectl create deployment --image=nginx nginx` # create a deployment on the fly without yaml
 
 
+## kubectl formatting tricks
+
+`-o <something>` can be used to specify the format of the output:
+
+```
+kubectl something -o json
+kubectl something -o yaml
+kubectl something -o name # name only
+kubectl something -o wide # print more stuff
+```
+
