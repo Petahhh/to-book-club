@@ -180,3 +180,20 @@ or
 
 `kubectl scale --replicas=6 -f replica-set-definition-original.yml`
 `kubectl scale --replicas=6 <type> <name>` e.g. `kubectl scale --replicas=6 replicaset myapp-replicaset`
+
+
+## Recap on Deployments
+
+say you wanted to deploy many instances of your web app. A new version comes out and you want a rolling update (update some instances at a time) or you want a rollback if something goes bad. Maybe you want to make a change on one instance, observe it, then replace the rest of the instances.
+
+deployment = replica set wrapper?
+
+`deployment-definition.yml`
+
+```
+<same as replica set except for the kind field>
+```
+
+`kubectl create -f deployment-definition.yml` # creates the deployment
+
+`kubectl get all` # shows all objects
