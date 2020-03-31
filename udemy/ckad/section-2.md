@@ -197,3 +197,10 @@ deployment = replica set wrapper?
 `kubectl create -f deployment-definition.yml` # creates the deployment
 
 `kubectl get all` # shows all objects
+
+Pro tip: use `kubectl run` to create objects without scaffolding out yaml files e.g.
+`kubectl run --generator=run-pod/v1 nginx --image=nginx` # create a pod on the fly without yaml
+`kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml` # prints out yaml without creating it
+`kubectl create deployment --image=nginx nginx` # create a deployment on the fly without yaml
+
+
