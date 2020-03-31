@@ -52,8 +52,8 @@ Cluster  |     |                    |    |                    |            |    
 |        API Server       |    |       Controllers       |    |       Scheduler         |
 +-------------------------+    +-------------------------+    +-------------------------+
 |                         |    |                         |    |                         |
-| - The interface for user|    | - Respond to changes in |    | - puts containers on    |
-| configuration           |    | the cluster             |    | nodes                   |
+| - The interface for user|    | - Monitors objects and  |    | - puts containers on    |
+| configuration           |    | respond accordingly     |    | nodes                   |
 +-------------------------+    +-------------------------+    +-------------------------+
 
 +-------------------------+    +-------------------------+    +-------------------------+
@@ -112,3 +112,71 @@ spec: <key value map w/ specifications for your object>
 
 `kubtectl describe pod my-pod` get pod specific info
 
+`kubtectl get pod <pod-name> -o yaml` to print pod definition
+
+## Recap on Replica Sets
+
+
+What happens if the app fails/pod fails? Redundancy helps. Replication Controller provides HA by running multiple PODs on the cluster. Replication Controller ensures the specified number of pods are runnings are all time. Key word running: even if you only have one pod, if that pod goes down the replication controller will revive it
+
+Replication Controller can scale up number of PODs even across nodes
+
+Replication Controller is replacing Replica Set
+
+### Replication Controller
+
+`replication-controller-definition.yml` Example of a replication controler
+```
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template: # Describes a pod template to be used by the controller
+     <pod-definition.yml (just metadata + spec)>
+  replicas: <number of replicas for this pod>
+```
+
+`kubectl create -f replication-controller-definition.yml` # Creates the pods via replication controller
+
+
+### Replica sets
+
+`replica-set-definition.yml` # Example definition yaml for a replica set
+
+```
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template: # Describes a pod template to be used by replica set
+     <pod-definition.yml (just metadata + spec)>
+  replicas: <number of replicas for this pod>
+  selector: # what pods fall under it - can create pods and use existing pods
+    matchLabels:
+      type: front-end # pods that much this label will be used
+```
+
+`selector` is required for Replica Sets
+
+`kubectl create -f replica-set-deifnition.yml` # creates a replica set which then creates the pod
+
+Why the selector??
+* ensure existing pods stay up (deploys pods if they fail)
+* labels help the replica set know which pods to monitor (there could be way more pods than running instances of the app you care about)
+  * you can create a replica set even if the pods are already created, the labels help with this
+  
+Scaling the replica set:
+Update your `replica-set-definition.yml` and run `kubectl replace -f replica-set-definition.yml`
+
+or
+
+`kubectl scale --replicas=6 -f replica-set-definition-original.yml`
+`kubectl scale --replicas=6 <type> <name>` e.g. `kubectl scale --replicas=6 replicaset myapp-replicaset`
