@@ -215,3 +215,29 @@ kubectl something -o name # name only
 kubectl something -o wide # print more stuff
 ```
 
+
+## Namespaces Recap
+
+* A `default` namespace is created where all your creations go unless specified
+  * `kubectl get` commands list objects in the `default` namespace
+  * `--namespace` flag can be used to specify the namespace
+  * in the definition yaml you can also specify `metadata.namespace`
+* K8s has it's own namespaces such as `kube-system` (private stuff) and `kube-public`
+* You can create your own namespaces to isolate resources within one k8s cluster
+* namespaces can have their own quotas and policies
+* to reference a service from another namespace you would append it's namespace to it's name. k8s has it's own dns system. e.g. 
+```
+db-service.dev.svc.cluster.local
+# db-service is the service name
+# dev is the namespace
+# svc indicates the type which is a service
+$ cluster.local is the domain 
+```
+
+* namespaces can be created just like any other k8s object through a definition file or `kubectl create namespace someNewSpace`
+* you can configure what namespace subsequent commands will use/refer to by running `kubectl config set-context $(kubectl config current-context) --namespace=dev`
+* `--all-namespaces` can be added to your `kubectl get` commands
+
+
+
+
