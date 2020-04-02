@@ -183,3 +183,96 @@ volumes:
   configMap:
     name: app-config
 ```
+
+## Secrets
+
+* passwords can be placed in config maps but they are still in plain text
+
+### Creating a Secret
+`kubectl create secret generic shhhh --from-literal=password=hehe` # imperative
+
+`kubectl create secret generic shhhh --from-file=app.secrets`
+
+`app.secrets`
+```
+HOST: mysql.address
+PASSWORD: password123
+USER: you
+```
+
+`kubectl create -f secret-definition.yml` # declaritively
+`secret-definition.yml`
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: shhh
+data:
+  HOST: mysqladdresss
+  USER: password123
+  PASSWORD: password123
+```
+
+
+`echo -n "some-string" | base64` # encodes the string - you should store the encoded passwords in the secret definition
+
+`echo -n "encoded-string@#$_342342 | base64 --decode` # to decode
+
+
+### Using secrets in pod definitions
+
+#### Using an entire secret
+
+`pod-definition.yml`
+```
+.
+.
+.
+spec:
+  containers:
+  - name: your-app
+    .
+    .
+    .
+    envFrom:
+      - secretRef:
+        name: shhh
+```
+
+The above injects all the secrets in `shhh` as environment variable
+
+
+#### Using a specific value within a secret
+
+To inject a individual secrets from a secret:
+
+```
+.
+.
+.
+env:
+  - name: DB_PASSWORD
+    valueFrom:
+      secreteKeyRef:
+        name: shhh
+        key: DB_PASSWORD_IN_shhh
+```
+
+#### Using volumes for secrets
+
+```
+...
+volumes:
+- name: app-secret-volume
+  secret:
+    secretName: app-secret
+```
+
+This results in volumes on the container:
+
+```
+$ ls /opt/app-secret-volumes
+> DB_HOST DBPASSWORD DB_USER
+$ cat /top/app-secret-volumes/DBPASSWORD
+> password123
+```
