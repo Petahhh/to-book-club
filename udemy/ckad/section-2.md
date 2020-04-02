@@ -121,7 +121,7 @@ What happens if the app fails/pod fails? Redundancy helps. Replication Controlle
 
 Replication Controller can scale up number of PODs even across nodes
 
-Replication Controller is replacing Replica Set
+Replication Controller is being replaced Replica Set
 
 ### Replication Controller
 
