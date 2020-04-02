@@ -276,3 +276,41 @@ $ ls /opt/app-secret-volumes
 $ cat /top/app-secret-volumes/DBPASSWORD
 > password123
 ```
+
+
+## Docker Security
+
+* hosts see a docker container's processes and pids
+* a container will see it's pid as `1` and doesn't know about the processes on the host. The host will see this pid but it won't be `1` - it'll be another number. The `1` the container sees is the pid with respect to it's namespace
+* `docker run --user=1000` can specify which user the process runs as or using `USER` in the Dockerfile
+* the `root` user within the container is not the same as the `root` user on the host - it is limited by linux capabilities
+* by default docker ensures the process within it's container is very limited
+  * use `docker run --cap-add` to add capabilities
+  * if YOLO `docker run --priveleged` the process can do errthing
+
+## Security Contexts
+
+* security settings can be carried at a pod level and apply to all the containers in the pod
+  * if there are pod and container level security settings, the container settings override the pod settings
+
+* pod wide security contexts can be set in pod definitions with `spec.securityContext`
+```
+...
+spec:
+  securityContext:
+    runAsUser: 1000
+```
+
+* you can move `securityContext` to the container template to make that security context container specific
+
+```
+...
+spec:
+  containers:
+    - name: ubuntu
+      ...
+      securityContext:
+        runAsUser: 1000
+        capabilities: # capabilities can be container specific but not pod specific
+          add: ["MAC_ADMIN"]
+```
