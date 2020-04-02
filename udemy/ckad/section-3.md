@@ -236,7 +236,7 @@ spec:
     .
     envFrom:
       - secretRef:
-        name: shhh
+          name: shhh
 ```
 
 The above injects all the secrets in `shhh` as environment variable
