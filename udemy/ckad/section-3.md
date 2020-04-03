@@ -400,3 +400,52 @@ spec:
 * limits will throttle a container's CPU when it goes over it's limit
 * when a container uses more memory than it's limit consistently, the pod will be terminated
 
+## Taints and Tolerations
+
+* taints and tolerations determine what pods end up on which nodes
+
+* putting a taint on a node prevents pods being scheduled on that node
+  * putting a toleration for that taint on a pod allows the scheduler to put the pod on that node
+  
+* taints are on nodes
+* tolerations are on pods
+
+### Example of creating a taint on a node
+
+command structure `kubectl taint nodes <node-name> key=value:<taint-effect>`
+
+`taint-effect` can be `[NoSchedule|PreferNoSchedule|NoExecute]`
+  * `NoSchedule` - do not schedule pods on this node that are not tolerant to it
+  * `PreferNoSchedule` - try not to schedule pods on this node that are not tolerant to it but no guarantee
+  * `NoExecute` - do not put intolerant pods on this node and evict existing pods if necessary
+
+`kubectl taint modes node1 app=blue:NoSchedule`
+
+### Example of creating a toleration on a pod with definition
+
+A pod's definition can be used to add tolerations
+
+```
+...
+spec:
+  ...
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"
+```
+
+* these toleration values must be an exact match to the taint and need to be double quoted
+
+### Gotcha about taint/toleration and pod control
+
+* a taint prevents certain pods from being scheduled on a node but a taint with a matching tolerant **does not guarantee** the pod with matching tolerant is scheduled on the node
+* instead node affinity can be used to achieve controlling which pods end up on which nodes
+
+### Master Node and it's default taint
+
+* by defaul the master node has a taint that prevents any pods from being deployed on it
+* it's best practice not to put workloads on your master node so this taint is a default
+
+
