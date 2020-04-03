@@ -364,5 +364,39 @@ spec:
 spec:
   ...
   automountServiceAccountToken: false
+```
+
+
+## Resource Requirements
+
+* the scheduler schedules pods based on the resource available of nodes
+* when nodes don't have enough resources for another pod, the creation of that pod was stay in the pending state with an error
+* when pods are created they take up
+  * cpu
+  * memory
+  * disk space
+  
+### Specifying how much memory and cpu a container needs
+
+* you can specify a container's cpu and memory needs in the pod defintion under `spec.containers[*].resources` as well as limits
+
+`pod-definition.yml`
 
 ```
+...
+spec:
+  containers:
+  - name: webapp
+    ...
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: 1 # smallest amount is 0.1, notation 1m or 100m can be used for 1/1000th of 1 CPU unit. 1 CPU unit = 1 aws vCPU/GCPCore/AzureCore
+      limits:
+        memory: "1G"
+        cpu: 2
+```
+
+* limits will throttle a container's CPU when it goes over it's limit
+* when a container uses more memory than it's limit consistently, the pod will be terminated
+
