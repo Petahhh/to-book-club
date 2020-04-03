@@ -314,3 +314,55 @@ spec:
         capabilities: # capabilities can be container specific but not pod specific
           add: ["MAC_ADMIN"]
 ```
+
+## Service Accounts
+
+Service Accounts (by bots: prometheus to monitor, jenkins to deploy) vs User Accounts (by humans: admins/devs)
+
+`kubectl create serviceaccount <your-service-account>` # creates a serviceaccount
+
+* service account tokens are generated automatically with each serviceaccount to be used by the service
+  * a secret object is created to store the token
+  * the secret object is linked to to the serviceaccount
+
+`kubectl describe serviceaccount <your-service-account>` # shows you the serviceaccount and name of secret token is in
+`kubectl describe secret <generated-secret>` # shows you the token
+
+Token can be used as the token bearer for making rest calls to the k8s api
+
+Shortcut - If the app you're running needs a k8s api token, you can mount the secret as a volume on the pod
+
+* a `default` serviceaccount is created for each namespace
+* pods within the namespace automatically receive the serviceaccount and token mounted as a volume
+
+
+### Attaching a Service Account to a Pod via it's definition
+
+* you can attach service accounts to a pod via the pod definition
+
+`pod-definition.yml`
+```
+...
+spec:
+  ...
+  serviceAccount: new-service-account
+```
+
+### Pod Recreation Fun Fact
+
+* we know changing Pod definition requires a delete and recreate for many properties
+* by using a deployment, changes in the pod _template_ mean the deployment controller knows to destroy and recreate the pod for you
+* you can use this technique to swap out serviceAccount keys easily
+
+### Disable automatic service account mounting in a pod
+
+* you can disable the automated mounting of the default service account to a pod through `spec.automountServiceAccountToken = false`
+
+`pod-definition.yml`
+```
+...
+spec:
+  ...
+  automountServiceAccountToken: false
+
+```
