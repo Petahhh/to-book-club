@@ -448,4 +448,61 @@ spec:
 * by defaul the master node has a taint that prevents any pods from being deployed on it
 * it's best practice not to put workloads on your master node so this taint is a default
 
+## Node Selectors
 
+* when nodes are not all equal and perhaps one is larger than the rest, you can specify where more resource intensive pods get schedule using node selectors
+
+`pod-definition.yml`
+```
+...
+spec:
+  ...
+  nodeSelector:
+    size: Large # this corresponds to labels on the ndoe
+```
+
+### Labeling a node
+
+`kubectl label nodes <node-name> <label-key>=<label-value>`
+
+`kubecetl label nodes node-1 size=Large`
+
+
+## Node Affinity
+
+* more advanced control of pod placement than node selctors
+
+### Example pod with multiple node label matches
+
+The following spec allows the pod to be scheduled on any node with the label `size=Large` or `size=Medium`
+```
+...
+spec:
+  ...
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: In
+            values:
+            - Large
+            - Medium
+```
+
+### Some options for `affinity...operator`
+
+`NotIn`: the inverse of `In`
+`Exists`: so long as the key exists, the value doesn't matter
+
+### Node Affinity Types
+
+* It's possible to define affinity spec that results in no matching ndoes
+* Node Affinity Types, the key following `nodeAffinity` such as `requiredDuringSchedulingIgnoredDuringExecution`, dictates what happens
+
+1. Available: `requiredDuringSchedulingIgnoredDuringExecution` # Pod not scheduled if no matching node found,  
+1. Available: `preferredDuringSchedulingIgnoredDuringExecution` # Pod scheduled despite not matchind node,
+In both above cases, if pods are running and labels change afterwards resulting in unmatched labels, do not stop the pods
+
+1. Planned: `requiredDuringSchedulingRequiredDuringExecution` # Pod not scheduled if no matching node found,  stop pod if label changes resulting in the ndoe not matching
