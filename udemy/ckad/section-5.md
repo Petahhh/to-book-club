@@ -93,4 +93,13 @@ For multiple containers within a pod you must specify the container name e.g.
 
 `kubectl logs -f <pod-name> <container-name>`
 
+## Monitoring
 
+* Metrics Server aggregates and stores data in memory from pods and nodes
+* Since it's in-memory - you'll probably want to forward them to things like datadog
+* kubelet is resposible for forwarding data to the metrics server
+  * cAdvisor - exposes pod metrics to kubelet
+* metrics-server needs to be deployed/created on the cluster (it's not automatically running on k8s clsusters by default)
+
+`kubectl top node` outputs node info such as cpu / memory
+`kubectl top pod` outputs pod info
