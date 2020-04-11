@@ -83,4 +83,14 @@ spec:
   * unhealthy pods are automatically recreated
 * it has the same structure as readinessProbe 
 
-  
+## Container Logging
+
+`docker logs -f <container id>` allows you to tail the logs of a running container
+
+`kubectl logs -f <pod name>` allows you to do the same for a running pod
+
+For multiple containers within a pod you must specify the container name e.g.
+
+`kubectl logs -f <pod-name> <container-name>`
+
+
