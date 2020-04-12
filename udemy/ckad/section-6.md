@@ -37,3 +37,7 @@
 
 * rolling back to a previous revision:
    * `kubectl rollout undo deployment/<deployment-name>` will destroy pods in the new replica set and bring back pods in the original one
+   
+`kubectl rollout status deployment/<deployment-name>` shows you the status of the rollout
+
+`kubectl rollout ... --record` adding this flag for edit/undo/set image will record the command that triggered the change. This will then show up in `kubectl rollout history deployment/<deployment-name>` "Change-Cause" column
