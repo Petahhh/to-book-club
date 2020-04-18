@@ -84,7 +84,7 @@ spec:
 K8s can run jobs based on a cron schedule. This object looks like this:
 
 ```
-apiVersion: bathc/v1beta1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: your-cron-job
