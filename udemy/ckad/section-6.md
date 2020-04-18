@@ -77,7 +77,7 @@ spec:
 * `spec.parallelism` can be set to control the number of pods created in parallel
   * k8s is smart enough to only spin up subsequent pods in parallel to meet `spec.completions` count
     * e.g. if paralleism = 2, completions = 3, then k8s will spin up 2 pods and if they both succeed, will spin up 1 additional pod to reach the target of 3
-* `spec.backOffLimit` is set to 6 by default
+* `spec.backoffLimit` is set to 6 by default
   * change this to limit or increase the number of times k8s will retry the pod to reach completion
 ## Cron Jobs
 
