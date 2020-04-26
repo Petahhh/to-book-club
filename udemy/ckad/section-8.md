@@ -36,7 +36,7 @@ spec:
 
 PV example
 ```
-apiVersion: v2
+apiVersion: v1
 kind: PersistentVolume
 metadta:
   name: pv-vol1
