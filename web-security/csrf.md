@@ -35,4 +35,5 @@
 ## Implementing CSRF Tokens
 
 * with the express app given as an example, libraries such as `csurf` make it easy to insert middle where to handle token generation and validation
-  * You just need to render the token in the form you're serving up and 
+  * You just need to render the token in the form you're serving up and hook in the validation when processing the request
+    * with csurf it's as easy as: `app.post('/process', parseForm, csrfProtection, function (req, res) { ...})`
