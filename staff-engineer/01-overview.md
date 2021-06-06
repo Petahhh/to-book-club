@@ -51,3 +51,24 @@
 * provides leadership across a small cluster of teams
 * will spend less time coding than before becoming staff
 * can be seen as a progression from tech lead role
+
+### Architect
+
+```
++----------------------------------+
+|----------------------------------|
+|----------------------------------|
+|----------------------------------|
++----------------------------------|
+|                 |----------------|
+|    Architect    |----------------|
+|                 |----------------|
++----------------------------------+
+```
+
+* increasingly less common in companies
+* often a domain expert in a complex area vital to the business (storage, cloud infrastructure, API)
+* sometimes born out of the need to pay down technical debt accrued from moving fast to find product-market fit
+* sometimes expected to be deeply familiar with the codebase, other times explicitly expected not to code
+* there may be a history / bad reputation that architects design a system and throw it over the wall for others to implement
+  * instead good architects are collaborators with leaders and
