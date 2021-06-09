@@ -50,7 +50,8 @@
 * works closely with product to plan roadmaps
 * provides leadership across a small cluster of teams
 * will spend less time coding than before becoming staff
-* can be seen as a progression from tech lead role
+* can be seen as a progression from traditional tech lead role
+  * tech lead role being the role an engineer takes on within sprint oriented teams (e.g. a senior engineer can be designated as the tech lead of a team but not a staff eng by title and not the tech lead archetype)
 
 ### Architect
 
