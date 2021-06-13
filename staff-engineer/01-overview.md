@@ -162,3 +162,45 @@ Becoming staff may be a pitfall. It is not uncommon for people to become staff a
 ### Material but not magic
 
 The title doesn’t automatically give you the social capital to call the shots. You are much better off working on collaborating, listening and other skills to help influence decisions. Perhaps if you are on the edge of becoming staff, the title will be helpful and push you past that point. The one exception is that women and minorities tend to get challenged or questioned about their technical abilities more often and this title can help with that.
+
+## What do staff engineers actually do?
+
+Senior engineers do less coding and more leadership work depending on the archetype 
+
+## Setting technical direction
+
+> Part time product manager for technology
+
+* Tries to help a group of engineers focus in on an ideal state of code quality / architecture and puts together a pragmatic plan to move towards that vision whether they ever fully realize that vision in entirety or not
+
+> Folks who successfully advance technology are pragmatic, deliberate, and focus more ont he long-term trend of progress than viewing each individual decision as a make-or-break criss
+
+* At this level you’re accountable to the business and must solve real needs and not advance your agenda based on ideals or fun pet projects. Advocating for a technical direction needs to provide value and can’t just be for fun or your personal interests which was easier to do as senior.
+
+### Mentorship and sponsorship 
+
+> You're far more likely to change your company's long-term trajectory by growing the engineers around you than thorugh personal heroics
+
+* Heroicism is not expected of staff, instead powering up those around you.
+
+* Pitfall: don’t do the dance to hit this checkbox because it is a source of truly high impact work.
+
+* Mentorship is good and doing more sponsorship is even better. 
+
+> putting your thumb directly on the scale to help advance and support those around you
+
+### Providing Engineering Prospective
+
+Staff engineers get pulled into conversations to help make high level decisions. More concretely, there are situations where decisions are made by leaders and an engineering perspective will improve the outcome before it’s too hard to change. 
+* Eg
+  * hiring staff plus
+  * agreeing to a new customer contract that has hard to spot engineering complexities and gotchas
+  * road mapping 
+
+### Exploration 
+
+> In the long term companies either learn to explore, or they fade away; this isn’t an ignorable challenge
+
+Staff engineers may be asked to go on explorations for a few months to see what they can learn. The exploration can range from solving an impending technical road blocker or optimizing a foreseeable scaling problem or stretching the capability of existing tools. 
+
+This work is rewarding and risky. High trust and respect is needed in staff engineers such that there is recognition that the failure and success of the exploration is a reflection of the problem not the engineer 
