@@ -204,3 +204,20 @@ Staff engineers get pulled into conversations to help make high level decisions.
 Staff engineers may be asked to go on explorations for a few months to see what they can learn. The exploration can range from solving an impending technical road blocker or optimizing a foreseeable scaling problem or stretching the capability of existing tools. 
 
 This work is rewarding and risky. High trust and respect is needed in staff engineers such that there is recognition that the failure and success of the exploration is a reflection of the problem not the engineer 
+
+### Being glue 
+
+Glue work: Invisible not glamorous work that ensures the team is successful and shipping. See [Tanya Reilly blog post](https://noidea.dog/glue)
+
+### Do they still write code?
+
+Based on the sections above it depends. Some prioritize maintaining the “hand to keyboard” practice to stay sharp while others rely on their teams to gain on the ground information. Sometimes you’re off building a prototype or doing sql to better understand user behaviour. In summary :
+
+> Most write some, some write none, but none write as much as they used to earlier in their career
+
+And if you’re doing a lot of coding on a regular basis it may be a sign that you’re “working on something comfortable rather than important”
+
+###Slow but rewarding
+
+The feedback cycle is really slow compared to coding. Easy to feel like you didn’t do anything productive
+
