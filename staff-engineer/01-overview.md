@@ -125,3 +125,40 @@
   * less "sense of community"
   * more likely than the other two to be recognized for their impacts
 * in the span of a 30-40 year career, you'll get to try a bit of each so picking one isn't a commitment
+
+## Does title matter?
+
+Yes and here’s why.
+
+### Informal gauges of seniority
+
+* Term coined by Nelson Elhage
+* Measuring merit is hard
+
+> Gauges are believed to evaluate ideas objectively, their sheer informality becomes a broad vector of bias and often conflate confidence with confidence
+
+* The title means you may not need to work as hard as you do to repeatedly prove your technical competence, especially if you do not visually fit the bill
+
+### Being in the room
+
+* one of the advantages of being staff is that you are in the room when decisions are made in the early phases
+  * your input can be easily incorporated when you're in the room early
+  * otherwise your input, though valid and impactful, may get dismissed because it arrived too late to the party
+
+### Compensation 
+
+* often times, but not always, the staff title will come with a pay bump
+* not all companies practice this but you can certainly navigate to the companies that pay staff better
+
+### Access to interesting work
+
+Being staff may mean access to interesting work, for example in the solver role. However this is not always the case. It is **more effective to be hired to work on more interesting things.** Often times the more interesting work doesn’t align with business outcomes and at this level you should not be taking these opportunities. Instead, these interesting projects that are valuable to the business may be more impactful for another engineer who will benefit from it more than you. And as a staff engineer you should be making those sacrifices or choices
+
+### Different rather than better
+
+Becoming staff may be a pitfall. It is not uncommon for people to become staff and do less of what excites them. It is recommended to fully understand the type of work that energizes you so you don’t end up in a role that doesn’t make you happy
+
+
+### Material but not magic
+
+The title doesn’t automatically give you the social capital to call the shots. You are much better off working on collaborating, listening and other skills to help influence decisions. Perhaps if you are on the edge of becoming staff, the title will be helpful and push you past that point. The one exception is that women and minorities tend to get challenged or questioned about their technical abilities more often and this title can help with that.
