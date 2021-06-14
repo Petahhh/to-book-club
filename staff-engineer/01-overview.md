@@ -217,7 +217,7 @@ Based on the sections above it depends. Some prioritize maintaining the “hand 
 
 And if you’re doing a lot of coding on a regular basis it may be a sign that you’re “working on something comfortable rather than important”
 
-###Slow but rewarding
+### Slow but rewarding
 
 The feedback cycle is really slow compared to coding. Easy to feel like you didn’t do anything productive
 
